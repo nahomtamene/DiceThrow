@@ -41,9 +41,12 @@ class DieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        throwDie()
-        view.setOnClickListener{
+
+        if (savedInstanceState == null)
             throwDie()
+        else{
+            currenRoll = savedInstanceState.getInt(PREVIOUS_ROLL)
+            dieTextView.text = currenRoll.toString()
         }
     }
 
@@ -58,4 +61,12 @@ class DieFragment : Fragment() {
         dieTextView.text = currenRoll.toString()
 
     }
+
+//    companion object{
+//        fun newInstance (sides : Int) = DieFragment().apply {
+//            arguments = Bundle().apply {
+//                putInt(DIESIDE,sides)
+//            }
+//        }
+//    }
 }
